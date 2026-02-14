@@ -3,12 +3,14 @@ package imager
 import (
 	"fmt"
 	"image/color"
+	_ "image/jpeg" // Register JPEG decoder
+	_ "image/png"  // Register PNG decoder
 	"os"
 	"github.com/fogleman/gg"
 	"comic-translator/pkg/ocr"
 )
 
-// ProcessImage loads an image, draws over the specified blocks with translated text, and saves the result.
+// ProcessImage loads an image, draws over the specified blocks with translated text, and saves the result as PNG.
 func ProcessImage(inputPath string, outputPath string, blocks []ocr.TextBlock, fontPath string) error {
 	im, err := gg.LoadImage(inputPath)
 	if err != nil {
